@@ -17,7 +17,7 @@ contract HelperConfig is Script {
 
     struct NetworkConfig {
         address priceFeed; // ETH/USD conversion
-        // We can add more config here if required
+            // We can add more config here if required
     }
 
     constructor() {
@@ -32,18 +32,14 @@ contract HelperConfig is Script {
 
     function getSepoliaEthConfig() public pure returns (NetworkConfig memory) {
         // to get real data from live network not only priceFeed address
-        NetworkConfig memory sepoliaConfig = NetworkConfig({
-            priceFeed: 0x694AA1769357215DE4FAC081bf1f309aDC325306
-        });
+        NetworkConfig memory sepoliaConfig = NetworkConfig({priceFeed: 0x694AA1769357215DE4FAC081bf1f309aDC325306});
         return sepoliaConfig;
     }
 
     // We can add as many chains as we want here
     function getMainnetConfig() public pure returns (NetworkConfig memory) {
         // to get real data from live network not only priceFeed address
-        NetworkConfig memory ethConfig = NetworkConfig({
-            priceFeed: 0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419
-        });
+        NetworkConfig memory ethConfig = NetworkConfig({priceFeed: 0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419});
         return ethConfig;
     }
 
@@ -58,9 +54,7 @@ contract HelperConfig is Script {
         MockV3Aggregator mockV3Aggregator = new MockV3Aggregator(8, 2000e8);
         vm.stopBroadcast();
 
-        NetworkConfig memory anvilConfig = NetworkConfig({
-            priceFeed: address(mockV3Aggregator)
-        });
+        NetworkConfig memory anvilConfig = NetworkConfig({priceFeed: address(mockV3Aggregator)});
         return anvilConfig;
     }
 }

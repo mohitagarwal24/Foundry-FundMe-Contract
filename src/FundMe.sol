@@ -76,10 +76,10 @@ contract FundMe {
     receive() external payable {
         fund();
     }
-    
+
     // View/pure functions
     function getAddressToAmountFunded(address fundingAddress) external view returns (uint256) {
-    return s_addressToAmountFunded[fundingAddress];
+        return s_addressToAmountFunded[fundingAddress];
     }
 
     function getFunders(uint256 index) external view returns (address) {
@@ -89,9 +89,7 @@ contract FundMe {
     function getOwner() external view returns (address) {
         return i_owner;
     }
-
 }
-
 
 // Concepts we didn't cover yet (will cover in later sections)
 // 1. Enum
