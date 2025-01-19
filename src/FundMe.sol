@@ -8,8 +8,8 @@ import {PriceConverter} from "./PriceConverter.sol";
 error FundMe__NotOwner();
 
 event Funded(address indexed funder, uint256 amount);
-event Withdrawn(address indexed owner, uint256 amount);
 
+event Withdrawn(address indexed owner, uint256 amount);
 
 contract FundMe {
     using PriceConverter for uint256;
