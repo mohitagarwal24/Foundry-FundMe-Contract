@@ -7,6 +7,10 @@ import {PriceConverter} from "./PriceConverter.sol";
 
 error FundMe__NotOwner();
 
+event Funded(address indexed funder, uint256 amount);
+event Withdrawn(address indexed owner, uint256 amount);
+
+
 contract FundMe {
     using PriceConverter for uint256;
 
@@ -28,6 +32,8 @@ contract FundMe {
         // require(PriceConverter.getConversionRate(msg.value) >= MINIMUM_USD, "You need to spend more ETH!");
         s_addressToAmountFunded[msg.sender] += msg.value;
         s_funders.push(msg.sender);
+
+        emit Funded(msg.sender, msg.value);
     }
 
     function getVersion() public view returns (uint256) {
@@ -56,6 +62,8 @@ contract FundMe {
         // call
         (bool callSuccess,) = payable(msg.sender).call{value: address(this).balance}("");
         require(callSuccess, "Call failed");
+
+        emit Withdrawn(msg.sender, address(this).balance);
     }
     // Explainer from: https://solidity-by-example.org/fallback/
     // Ether is sent to contract
